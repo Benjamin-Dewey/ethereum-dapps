@@ -1,13 +1,14 @@
-pragma solidity ^0.4.17;
+pragma solidity ^0.4.17; // solhint-disable-line
+
 
 contract Inbox {
-  string public message;
+    string public message;
 
-  function Inbox(string initialMessage) public {
-    message = initialMessage;
-  }
+    function Inbox(string initialMessage) public {
+        message = initialMessage;
+    }
 
-  function setMessage(string newMessage) public {
-    message = newMessage;
-  }
+    function setMessage(string newMessage) public {
+        message = newMessage;
+    }
 }
