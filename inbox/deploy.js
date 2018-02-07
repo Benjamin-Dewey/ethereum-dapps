@@ -1,6 +1,6 @@
 const HDWalletProvider = require('truffle-hdwallet-provider');
 const Web3 = require('web3');
-const { interface, bytecode } = require('./compile');
+const contract = require('./compile');
 
 const mneumonic = 'breeze jar acid range various salon another ribbon juice pen undo tragic';
 const network = 'https://rinkeby.infura.io/DXw2rqHt6I8SobHyuro6';
@@ -14,13 +14,14 @@ const deploy = async () => {
 
   console.log('Attempting to deploy from account', mainAccount);
 
-  const abi = JSON.parse(interface);
+  const abi = JSON.parse(contract.interface);
 
   const { options: { address } } = await new web3.eth.Contract(abi)
-    .deploy({ data: bytecode, arguments: ['Hi there'] })
+    .deploy({ data: contract.bytecode, arguments: ['Hi there'] })
     .send({ gas: '1000000', from: mainAccount });
 
   console.log('Contract deployed to', address);
+  // 0x3fB15b62E3678E60cbfD5cd42CBe4885f7c98508
 };
 
 deploy();
